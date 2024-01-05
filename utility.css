@@ -1,0 +1,62 @@
+.border{
+    border: 2px solid red;
+    margin: 3px;
+}
+
+.flex{
+    display: flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.items-center{
+    align-items: center;
+}
+
+.bg-black{
+    background-color: black;
+    color: white;
+}
+
+.invert{
+    filter: invert(1);
+}
+
+.bg-gray{
+    background-color: #121212;
+}
+
+.rounded{
+    border-radius: 7px;
+}
+
+.m-1{
+    margin: 5px;
+}
+.p-1{
+   padding: 10px;
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #1a1a1a;
+  }
+  
+  /* For Firefox */
+  /* Note: Firefox supports scrollbar-color, but older versions use scrollbar-face-color and scrollbar-track-color */
+  /* For better compatibility, include both */
+  /* You can remove scrollbar-face-color and scrollbar-track-color if you're targeting the latest Firefox versions */
+  
+
+  
