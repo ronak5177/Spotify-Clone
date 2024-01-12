@@ -4,9 +4,9 @@ let currFolder;
 
 function secondsToMinutes(seconds) {
   // Ensure seconds is a non-negative number
-  if (typeof seconds !== 'number' || seconds < 0) {
-    throw new Error('Input must be a non-negative number');
-  }
+  if (isNaN(seconds) || seconds < 0) {
+    return "00:00";
+}
 
   // Calculate minutes and remaining seconds
   const minutes = Math.floor(seconds / 60);
@@ -37,7 +37,9 @@ async function getSongs(folder) {
   // Show all the songs in the playlist
   let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0]
   songUl.innerHTML = ""
-  for (const song of songs){
+  for (let song of songs){
+    song = decodeURI(song);
+    console.log(song)
     songUl.innerHTML += `<li><img class="invert" src="img/music.svg" alt="music.svg">
                 <div class="info">
                 <div>${song.replaceAll("%20"," ")}</div>
@@ -122,7 +124,8 @@ async function displayAlbums(){
 
 async function main() {
   // Get list of all songs
-  await getSongs("songs/ncs/");
+  // document.querySelector(".songtime").innerHTML = "00:00 / 00:00" 
+  await getSongs("songs/Anuv_Jain/");
   playMusic(songs[0], true)
 
   // Display all the albums on the page
@@ -147,6 +150,13 @@ async function main() {
     ${secondsToMinutes(currentSong.duration)}`
 
     document.querySelector(".circle").style.left = (currentSong.currentTime/ currentSong.duration) * 100 + "%"
+    if (currentSong.currentTime === currentSong.duration){
+      currentSong.pause()
+      let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+      if ((index + 1) < songs.length) {
+          playMusic(songs[index + 1])
+      }
+    }
   })
 
   // Add an event listener to seekbar
@@ -185,19 +195,25 @@ async function main() {
   })
    // Add an event listener to previous
    previous.addEventListener("click", () => {
+    // document.querySelector(".songtime").innerHTML = "00:00 / 00:00" 
     currentSong.pause()
     let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
     if ((index - 1) >= 0) {
         playMusic(songs[index - 1])
+    }else {
+      playMusic(songs[index])
     }
   })
 
   // Add an event listener to next
   next.addEventListener("click", () => {
+    // document.querySelector(".songtime").innerHTML = "00:00 / 00:00" 
     currentSong.pause()
     let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
     if ((index + 1) < songs.length) {
         playMusic(songs[index + 1])
+    } else {
+      playMusic(songs[index])
     }
 })
 

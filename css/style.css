@@ -222,7 +222,7 @@ body {
 
 .songList {
   height: 444px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .songList ul {

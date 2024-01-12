@@ -1,9 +1,0 @@
-{
-    "livePreview.defaultPreviewPath": "/index.html",
-    "livePreview.httpHeaders": {
-
-        "Accept-Ranges": "bytes"
-    },
-    "livePreview.openPreviewTarget": "External Browser",
-    "livePreview.hostIP": "192.168.2.1"
-}
